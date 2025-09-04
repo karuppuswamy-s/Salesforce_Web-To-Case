@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web-to-Case Submission Error</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .error-message { color: red; font-weight: bold; margin-bottom: 20px; }
+        .back-link { margin-top: 20px; display: inline-block; }
+    </style>
+    <script>
+        // Function to get query parameter
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Display exact Salesforce error
+        window.onload = function() {
+            const errorMsg = getQueryParam('err');
+            if (errorMsg) {
+                const errorDiv = document.getElementById('errorDiv');
+                errorDiv.innerText = decodeURIComponent(errorMsg.replace(/\+/g, ' '));
+                errorDiv.style.display = 'block';
+            }
+        };
+    </script>
+</head>
+<body>
+    <h1>Submission Failed</h1>
+
+    <!-- Exact Salesforce error will appear here -->
+    <div id="errorDiv" class="error-message" style="display:none;"></div>
+
+    <p>Please correct the above error(s) and try submitting the form again.</p>
+
+    <!-- Link back to your Web-to-Case form -->
+    <a href="your-web-to-case-form.html" class="back-link">Back to Form</a>
+</body>
+</html>
